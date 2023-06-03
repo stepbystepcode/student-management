@@ -2,6 +2,7 @@
 #include "student.h"
 #define QUIT 7
 int main(void) {
+    puts("欢迎使用学生信息管理系统！");
     init();
     int code;
     while ((code = menu()) != QUIT) {
@@ -23,6 +24,7 @@ int main(void) {
                 break;
             case 6:
                 query();
+                break;
             default:
                 puts("error.");
         }
@@ -32,7 +34,6 @@ int main(void) {
 }
 int menu(void){
     printf("%s%s\n",STARS,STARS);
-    puts("欢迎使用学生信息管理系统！");
     int code,status;
     puts("（1）学生基本信息录入 \n（2）学生基本信息显示\n（3）学生基本信息保存\n（4）学生基本信息删除\n（5）学生基本信息修改\n（6）学生基本信息查询\n（7）退出系统\n请输入数字选择: ");
     printf("%s%s\n",STARS,STARS);
