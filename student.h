@@ -10,6 +10,7 @@ struct student{
 };
 int menu(void);
 int menu5(void);
+void wait();
 int menu6(void);
 void init(void);
 void add(void);

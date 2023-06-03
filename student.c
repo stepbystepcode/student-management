@@ -40,13 +40,14 @@ void add(){
     puts("请输入新增学生电话: ");
     scanf("%s",list[count].phone);
     count++;
-    printf("filecount:%d,count:%d",filecount,count);
-};
+}
 void display(){
-    printf("%s\t\t%s\t\t\t%s\t%s\t%s\n","姓名","学号","性别","年龄","电话");
+    printf("%s%s\n",STARS,STARS);
+    printf("%s\t\t%s\t\t%s\t%s\t%s\n","姓名","学号","性别","年龄","电话");
     for (int i = 0; i < count; i++) {
-        printf("%s\t\t%s\t%s\t\t%d\t\t%s\n",list[i].name,list[i].id,list[i].sex,list[i].age,list[i].phone);
+        printf("%s\t\t%s\t%s\t%d\t%s\n",list[i].name,list[i].id,list[i].sex,list[i].age,list[i].phone);
     }
+    printf("%s%s\n",STARS,STARS);
 }
 void save(){
     if (filecount == count) {
@@ -57,7 +58,7 @@ void save(){
     fwrite(&list[filecount], size, count - filecount, pstus);
     filecount = count;
     puts("已保存新增学生信息");
-};
+}
 void deletion(){
     int i, j;
     char id[13];
@@ -74,7 +75,7 @@ void deletion(){
         }
     }
     printf("未找到学号为 %s 的学生信息\n", id);
-};
+}
 void modify(){
     int i;
     char id[13];
@@ -111,7 +112,7 @@ void modify(){
         }
     }
     printf("未找到学号为 %s 的学生信息\n", id);
-};
+}
 void query(){
         switch (menu6()) {
             case 1:
@@ -126,23 +127,22 @@ void query(){
             default:
                 puts("error.");
         }
-};
+}
 void queryX(char type, char *field){
-    int i,found=0;
+    int i,found=12;
     char value[13];
     puts("请输入要查询的学生");
     printf("%s: ", field);
     scanf("%s", value);
     printf("%s\t\t%s\t\t\t%s\t%s\t%s\n","姓名","学号","性别","年龄","电话");
-    for (i = 0; i < count; i++) {
-        if (type == 'N' && strcmp(list[i].name, value) == 0) found=1;
-        else if (type == 'I' && strcmp(list[i].id, value) == 0) found=1;
-        else if (type == 'P' && strcmp(list[i].phone, value) == 0) found=1;
-    }
-    if (found)
-        printf("%s\t\t%s\t%s\t\t%d\t\t%s\n",list[i].name,list[i].id,list[i].sex,list[i].age,list[i].phone);
+    for (i = 0; i < count; i++)
+        if ((type == 'N' && strcmp(list[i].name, value) == 0)||(type == 'I' && strcmp(list[i].id, value) == 0)||(type == 'P' && strcmp(list[i].phone, value) == 0)) found=i;
+    printf("%s%s\n",STARS,STARS);
+    if (found!=12)
+        printf("%s\t\t%s\t%s\t\t%d\t\t%s\n",list[found].name,list[found].id,list[found].sex,list[found].age,list[found].phone);
     else
         printf("未找到%s为 %s 的学生信息\n", field, value);
+    printf("%s%s\n",STARS,STARS);
 }
 int menu6(void){
     printf("%s%s\n",STARS,STARS);
@@ -170,4 +170,4 @@ int menu5(void){
 void quit(){
     fclose(pstus);
     puts("感谢使用本系统！再见~");
-};
+}
